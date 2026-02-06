@@ -9,41 +9,41 @@
 ## ✅ DONE
 
 ### Project Setup
-- [x] Create GitHub repository - `commit: initial`
-- [x] Clone repository locally - `commit: initial`
-- [x] Create project folder structure (/backend, /web, /mobile, /docs) - `commit: pending`
-- [x] Create README.md with project overview - `commit: pending`
-- [x] Create TASK_CHECKLIST.md - `commit: pending`
+- [x] Create GitHub repository - `commit: 980f99f`
+- [x] Clone repository locally - `commit: 980f99f`
+- [x] Create project folder structure (/backend, /web, /mobile, /docs) - `commit: 980f99f`
+- [x] Create README.md with project overview - `commit: 980f99f`
+- [x] Create TASK_CHECKLIST.md - `commit: 980f99f`
+
+### Backend Development
+- [x] Set up Spring Boot project structure - `commit: 980f99f`
+- [x] Configure Maven dependencies - `commit: 980f99f`
+- [x] Configure MySQL database connection - `commit: 980f99f`
+- [x] Create User entity and repository - `commit: 980f99f`
+- [x] Implement BCrypt password encryption - `commit: 980f99f`
+- [x] Create POST /api/auth/register endpoint - `commit: 980f99f`
+- [x] Create POST /api/auth/login endpoint - `commit: 980f99f`
+- [x] Implement JWT token generation - `commit: 980f99f`
+- [x] Create GET /api/user/me endpoint (protected) - `commit: 980f99f`
+- [x] Test all backend endpoints - `commit: 980f99f`
+
+### Web Application Development
+- [x] Initialize React project - `commit: 980f99f`
+- [x] Set up React Router - `commit: 980f99f`
+- [x] Configure Axios for API calls - `commit: 980f99f`
+- [x] Create Register page UI - `commit: 980f99f`
+- [x] Implement Register page functionality - `commit: 980f99f`
+- [x] Create Login page UI - `commit: 980f99f`
+- [x] Implement Login page functionality - `commit: 980f99f`
+- [x] Create Dashboard/Profile page UI - `commit: 980f99f`
+- [x] Implement protected route logic - `commit: 980f99f`
+- [x] Implement Logout functionality - `commit: 980f99f`
+- [x] Style all pages with responsive design - `commit: 980f99f`
+- [x] Test web application flow - `commit: 980f99f`
 
 ---
 
 ## 🔄 IN-PROGRESS
-
-### Backend Development
-- [ ] Set up Spring Boot project structure
-- [ ] Configure Maven dependencies
-- [ ] Configure MySQL database connection
-- [ ] Create User entity and repository
-- [ ] Implement BCrypt password encryption
-- [ ] Create POST /api/auth/register endpoint
-- [ ] Create POST /api/auth/login endpoint
-- [ ] Implement JWT token generation
-- [ ] Create GET /api/user/me endpoint (protected)
-- [ ] Test all backend endpoints
-
-### Web Application Development
-- [ ] Initialize React project
-- [ ] Set up React Router
-- [ ] Configure Axios for API calls
-- [ ] Create Register page UI
-- [ ] Implement Register page functionality
-- [ ] Create Login page UI
-- [ ] Implement Login page functionality
-- [ ] Create Dashboard/Profile page UI
-- [ ] Implement protected route logic
-- [ ] Implement Logout functionality
-- [ ] Style all pages with responsive design
-- [ ] Test web application flow
 
 ### Documentation
 - [ ] Create Entity Relationship Diagram (ERD)
@@ -84,10 +84,10 @@
 | Category | Done | In Progress | Total | % Complete |
 |----------|------|-------------|-------|------------|
 | Project Setup | 5 | 0 | 5 | 100% |
-| Backend | 0 | 10 | 10 | 0% |
-| Web App | 0 | 11 | 11 | 0% |
+| Backend | 10 | 0 | 10 | 100% |
+| Web App | 12 | 0 | 12 | 100% |
 | Documentation | 0 | 7 | 7 | 0% |
-| **Overall** | **5** | **28** | **33** | **15%** |
+| **Overall** | **27** | **7** | **34** | **79%** |
 
 ---
 
