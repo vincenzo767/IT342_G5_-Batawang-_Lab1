@@ -43,6 +43,9 @@ code {
   width: 100%;
   max-width: 450px;
   animation: slideUp 0.5s ease;
+  overflow: visible;
+  position: relative;
+  z-index: 1;
 }
 
 @keyframes slideUp {
@@ -69,11 +72,16 @@ code {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: 5px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .logo p {
   color: #666;
   font-size: 0.95rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 /* Form Styles */
@@ -113,11 +121,15 @@ code {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  margin-top: 10px;
 }
 
 .btn-primary:hover {
