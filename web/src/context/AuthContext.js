@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
   const loadUser = async () => {
     try {
       const response = await userAPI.getCurrentUser();
-      setUser(response.data);
+      setUser(response.data.data);
       setError(null);
     } catch (err) {
       console.error('Failed to load user:', err);
@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
     try {
       setError(null);
       const response = await authAPI.register(userData);
-      const { token } = response.data;
+      const { token } = response.data.data;
       localStorage.setItem('token', token);
       await loadUser();
       return { success: true };
@@ -59,7 +59,7 @@ export const AuthProvider = ({ children }) => {
     try {
       setError(null);
       const response = await authAPI.login(credentials);
-      const { token } = response.data;
+      const { token } = response.data.data;
       localStorage.setItem('token', token);
       await loadUser();
       return { success: true };
@@ -70,10 +70,16 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const logout = () => {
-    localStorage.removeItem('token');
-    setUser(null);
-    setError(null);
+  const logout = async () => {
+    try {
+      await authAPI.logout();
+    } catch (err) {
+      console.error('Logout request failed:', err);
+    } finally {
+      localStorage.removeItem('token');
+      setUser(null);
+      setError(null);
+    }
   };
 
   const value = {
