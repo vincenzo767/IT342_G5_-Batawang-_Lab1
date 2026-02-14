@@ -15,7 +15,8 @@
 4. [UML Diagrams](#uml-diagrams)
 5. [API Specifications](#api-specifications)
 6. [Web Application Screenshots](#web-application-screenshots)
-7. [Security Implementation](#security-implementation)
+7. [Mobile Application Screenshots](#mobile-application-screenshots)
+8. [Security Implementation](#security-implementation)
 
 ---
 
@@ -30,6 +31,8 @@ SynChef is an innovative recipe application that focuses on **Real-Time Executio
 - Password encryption using BCrypt
 - Protected user profile endpoint
 - Dashboard/Profile page
+- Logout functionality
+- **Mobile application (Android)** with same features
 
 ### 1.3 Technology Stack
 
@@ -44,6 +47,13 @@ SynChef is an innovative recipe application that focuses on **Real-Time Executio
 - React Router v6
 - Axios HTTP Client
 - Context API for State Management
+
+**Mobile Application:**
+- Kotlin (Android)
+- XML Layouts with Material Design
+- Retrofit 2 + OkHttp
+- DataStore for token storage
+- Kotlin Coroutines
 
 ---
 
@@ -459,7 +469,233 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
 ---
 
-## 7. Security Implementation
+## 7. Mobile Application Screenshots
+
+### 7.1 Overview
+
+The Android mobile application is implemented using **Kotlin** with **XML layouts** and follows the same visual design as the web application.
+
+**Technology Stack:**
+- Language: Kotlin
+- UI: XML Layouts with Material Design Components
+- Architecture: Activity-based with MVVM patterns
+- Networking: Retrofit 2 + OkHttp + Gson
+- Storage: DataStore (for JWT token)
+- Async: Kotlin Coroutines
+
+**Package:** `com.synchef.app`  
+**Min SDK:** 24 (Android 7.0)  
+**Target SDK:** 34 (Android 14)
+
+### 7.2 MainActivity (Landing Page)
+
+**Features:**
+- SynChef logo and branding
+- "Login" button
+- "Create Account" button
+- Purple gradient background
+- Checks for existing JWT token on startup
+- Auto-redirects to Dashboard if logged in
+
+**Design:**
+- Full-screen purple gradient (#6366F1)
+- Chef emoji logo 🍳
+- Yellow primary button (#FCD34D)
+- White transparent secondary button
+- Center-aligned content
+
+### 7.3 Register Screen
+
+**Features:**
+- Username input (required)
+- Email input (required, validated)
+- Full Name input (optional)
+- Phone Number input (optional)
+- Password input (required, min 6 chars)
+- Confirm Password input (required)
+- "Create Account" button
+- Link to Login screen
+- Error message display
+- Form validation
+
+**Design:**
+- Purple gradient background
+- White card with rounded corners (24dp radius)
+- Material Design text input fields
+- Password visibility toggle
+- Yellow submit button
+- Scrollable layout for smaller screens
+
+**API Integration:**
+- POST `/api/auth/register`
+- Stores JWT token in DataStore
+- Navigates to Dashboard on success
+
+### 7.4 Login Screen
+
+**Features:**
+- Username input (required)
+- Password input (required)
+- "Login" button
+- Link to Register screen
+- Error message display
+- Loading state
+
+**Design:**
+- Purple gradient background
+- White card with rounded corners
+- Material input fields with icons
+- Password visibility toggle
+- Yellow login button
+- "Welcome Back" heading
+
+**API Integration:**
+- POST `/api/auth/login`
+- Saves JWT token in DataStore
+- Redirects to Dashboard on success
+- Shows error for invalid credentials
+
+### 7.5 Dashboard Screen (Protected)
+
+**Features:**
+- Top bar with "SynChef Dashboard" title
+- Logout button in header
+- Profile card with:
+  - Circular avatar with user initials
+  - Full name and username
+  - User ID
+  - Username
+  - Email address
+  - Full name
+  - Phone number
+  - Member since date
+  - Account status badge
+- Scroll view for long content
+- Loading indicator
+
+**Design:**
+- Purple top bar with white text
+- Gray background (#F3F4F6)
+- White profile card with shadow
+- Purple circular avatar
+- Yellow status badge
+- Clean typography hierarchy
+- Organized information layout
+
+**API Integration:**
+- GET `/api/user/me` (with JWT token in header)
+- POST `/api/auth/logout`
+- Displays user profile data
+- Clears token and redirects to Main on logout
+
+### 7.6 Key Mobile Features
+
+**JWT Token Management:**
+- Stored securely using AndroidX DataStore
+- Automatically attached to API requests via AuthInterceptor
+- Persists across app restarts
+- Cleared on logout
+
+**Navigation Flow:**
+```
+MainActivity (check token)
+    ├─ Has token → Dashboard
+    └─ No token → Login/Register
+         ├─ Login → Dashboard
+         └─ Register → Dashboard
+              └─ Logout → MainActivity
+```
+
+**Protected Routes:**
+- Dashboard activity requires valid JWT token
+- Token verified on each API call
+- Invalid/expired token redirects to MainActivity
+
+**Error Handling:**
+- Network errors displayed to user
+- Form validation before API calls
+- Invalid credentials show error message
+- API errors parsed and displayed
+
+**Responsive Design:**
+- Works on all screen sizes (phones & tablets)
+- ScrollView for smaller screens
+- Adaptive text sizing
+- Material Design guidelines followed
+
+### 7.7 API Configuration
+
+**Base URL:** `http://10.0.2.2:8080/api/`  
+(Android Emulator uses `10.0.2.2` to access host machine's localhost)
+
+**For Physical Device:**
+Update `RetrofitClient.kt`:
+```kotlin
+private const val BASE_URL = "http://YOUR_COMPUTER_IP:8080/api/"
+```
+
+**Endpoints Used:**
+- `POST /auth/register` - User registration
+- `POST /auth/login` - User login
+- `POST /auth/logout` - User logout
+- `GET /user/me` - Get current user (requires JWT)
+
+**Request Headers:**
+```
+Content-Type: application/json
+Authorization: Bearer {JWT_TOKEN}
+```
+
+### 7.8 Build Configuration
+
+**Gradle Dependencies:**
+```gradle
+// AndroidX
+implementation 'androidx.core:core-ktx:1.12.0'
+implementation 'androidx.appcompat:appcompat:1.6.1'
+implementation 'com.google.android.material:material:1.11.0'
+
+// Networking
+implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+implementation 'com.squareup.okhttp3:logging-interceptor:4.12.0'
+
+// Coroutines
+implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
+
+// DataStore
+implementation 'androidx.datastore:datastore-preferences:1.0.0'
+```
+
+**AndroidManifest Permissions:**
+```xml
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+```
+
+### 7.9 Running the Mobile App
+
+**Prerequisites:**
+1. Android Studio Hedgehog or later
+2. JDK 8+
+3. Android Emulator or physical device
+4. Backend running on localhost:8080
+
+**Steps:**
+1. Open `mobile` folder in Android Studio
+2. Wait for Gradle sync to complete
+3. Select emulator or device
+4. Click Run ▶️
+5. App will launch on selected device
+
+**Troubleshooting:**
+- If cannot connect to backend, ensure backend is running
+- For physical device, update BASE_URL with computer's IP
+- Check firewall allows connections on port 8080
+
+---
+
+## 8. Security Implementation
 
 ### 7.1 Password Security
 
@@ -523,11 +759,14 @@ BCrypt Hash: "$2a$10$N9qo8uLOickgx2ZMRZoMye..."
 ✅ Secure password minimum length (6 chars)  
 ✅ Input validation on both frontend and backend  
 ✅ SQL injection prevention (JPA/Hibernate)  
-✅ XSS prevention (React escapes by default)
+✅ XSS prevention (React escapes by default)  
+✅ Secure token storage (localStorage for web, DataStore for mobile)  
+✅ HTTPS-ready configuration (for production)  
+✅ Logout endpoint to clear server-side context
 
 ---
 
-## 8. Testing Guide
+## 9. Testing Guide
 
 ### 8.1 Backend Testing
 
@@ -596,11 +835,76 @@ npm start
    - Without logging in, try to access /dashboard directly
    - Should redirect to login page
 
+### 8.3 Mobile Application Testing
+
+**Start Backend:**
+```bash
+cd backend
+mvn spring-boot:run
+```
+
+**Run Mobile App:**
+1. Open Android Studio
+2. Open `mobile` folder as project
+3. Wait for Gradle sync
+4. Run on emulator or device
+
+**Test Scenarios:**
+
+1. **First Launch:**
+   - Should show MainActivity with Login/Register buttons
+   - Click Register to test registration
+   - Click Login to test login
+
+2. **Register New User:**
+   - Tap "Create Account"
+   - Fill in username, email, password
+   - Optional: add full name and phone
+   - Tap "Create Account" button
+   - Should navigate to Dashboard
+   - Profile should show entered information
+
+3. **Login Existing User:**
+   - From MainActivity, tap "Login"
+   - Enter username and password
+   - Tap "Login" button
+   - Should navigate to Dashboard
+   - Verify profile information is correct
+
+4. **View Profile:**
+   - In Dashboard, verify all fields:
+     - Avatar shows correct initials
+     - Username, email, full name displayed
+     - Phone number (or "Not provided")
+     - Member since date formatted correctly
+     - Status badge shows "Active"
+
+5. **Logout:**
+   - Tap "Logout" button in top bar
+   - Should return to MainActivity
+   - Close and reopen app - should stay on MainActivity (token cleared)
+
+6. **Token Persistence:**
+   - Login to app
+   - Close app completely
+   - Reopen app
+   - Should automatically go to Dashboard (token persisted)
+
+7. **Protected Route:**
+   - Without logging in, observe MainActivity
+   - Cannot access Dashboard without token
+   - After logout, Dashboard is inaccessible
+
+8. **Error Handling:**
+   - Try wrong credentials - should show error
+   - Try registering with existing username - should show error
+   - Turn off backend - should show network error
+
 ---
 
-## 9. Future Enhancements (Lab 2+)
+## 10. Future Enhancements (Lab 2+)
 
-- Mobile application (Android/iOS)
+- ~~Mobile application (Android/iOS)~~ ✅ **Completed in this session**
 - Recipe CRUD operations
 - Adaptive Timer System
 - Global Flavor Map (3D globe)
@@ -613,24 +917,33 @@ npm start
 
 ---
 
-## 10. Conclusion
+## 11. Conclusion
 
 This document covers the complete implementation of the User Registration and Authentication system for SynChef. The system includes:
 
 - ✅ Backend API with Spring Boot
 - ✅ MySQL database integration
 - ✅ BCrypt password encryption
-- ✅ JWT authentication
+- ✅ JWT authentication with logout endpoint
+- ✅ Improved API responses with ApiResponse wrapper
+- ✅ Global exception handling
 - ✅ ReactJS web application
-- ✅ Register, Login, and Dashboard pages
+- ✅ **Android mobile application (Kotlin + XML)**
+- ✅ Register, Login, and Dashboard pages (Web & Mobile)
 - ✅ Protected routes
 - ✅ Logout functionality
+- ✅ Token persistence (localStorage for web, DataStore for mobile)
 
-All requirements for Lab 1 have been successfully implemented.
+**Platforms Implemented:**
+1. **Backend**: Spring Boot REST API
+2. **Web**: ReactJS Single Page Application
+3. **Mobile**: Android Native App (Kotlin)
+
+All requirements for the session have been successfully implemented. Both web and mobile applications connect to the same backend API and share the same authentication flow.
 
 ---
 
-**Document Version:** 1.0  
-**Last Updated:** February 6, 2026  
+**Document Version:** 2.0  
+**Last Updated:** February 14, 2026  
 **Authors:** Group 5 - Batawang  
 **Course:** IT342
