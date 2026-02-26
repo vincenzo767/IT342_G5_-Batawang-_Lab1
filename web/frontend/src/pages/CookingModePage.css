@@ -1,0 +1,231 @@
+.cooking-mode-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  padding: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.cooking-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.cooking-header h2 {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.progress-indicator {
+  font-size: 16px;
+  color: #9ca3af;
+}
+
+.active-timers-bar {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  backdrop-filter: blur(10px);
+}
+
+.timer-chip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: rgba(102, 126, 234, 0.2);
+  border: 2px solid #667eea;
+  border-radius: 24px;
+  font-weight: 600;
+}
+
+.timer-chip.paused {
+  border-color: #fbbf24;
+  background: rgba(251, 191, 36, 0.2);
+}
+
+.timer-chip.completed {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.2);
+}
+
+.timer-display {
+  font-family: 'Courier New', monospace;
+  font-size: 18px;
+}
+
+.step-focus-card {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 24px;
+}
+
+.step-number-large {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.step-instruction-large {
+  text-align: center;
+  max-width: 800px;
+}
+
+.step-instruction-large p {
+  font-size: 28px;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.timer-control {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.timer-display-large {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.timer-circle {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.timer-circle svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.timer-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+}
+
+.timer-controls {
+  display: flex;
+  gap: 16px;
+}
+
+.step-tip-large {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  background: rgba(251, 191, 36, 0.1);
+  border: 2px solid #fbbf24;
+  border-radius: 12px;
+  max-width: 700px;
+  text-align: left;
+}
+
+.tip-icon {
+  font-size: 32px;
+}
+
+.step-tip-large p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #fde68a;
+}
+
+.step-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+}
+
+.step-dots {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+  justify-content: center;
+}
+
+.step-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  padding: 0;
+}
+
+.step-dot.active {
+  background: #667eea;
+  width: 32px;
+  border-radius: 6px;
+}
+
+.step-dot.completed {
+  background: #10b981;
+}
+
+.step-dot:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+@media (max-width: 768px) {
+  .step-focus-card {
+    padding: 24px;
+  }
+
+  .step-instruction-large p {
+    font-size: 20px;
+  }
+
+  .timer-circle {
+    width: 150px;
+    height: 150px;
+  }
+
+  .timer-text {
+    font-size: 36px;
+  }
+
+  .step-navigation {
+    flex-direction: column;
+  }
+
+  .step-dots {
+    order: -1;
+  }
+}

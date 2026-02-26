@@ -1,86 +1,31 @@
-# .gitignore for SynChef Project
-
-# Backend (Maven/Spring Boot)
-backend/target/
-backend/.mvn/
-backend/mvnw
-backend/mvnw.cmd
-backend/.idea/
-backend/*.iml
-backend/.classpath
-backend/.project
-backend/.settings/
-backend/.vscode/
-
-# Web (React/Node.js)
-web/node_modules/
-web/build/
-web/.env
-web/.env.local
-web/.env.development.local
-web/.env.test.local
-web/.env.production.local
-web/npm-debug.log*
-web/yarn-debug.log*
-web/yarn-error.log*
-web/.DS_Store
-
-# Mobile (Future)
-mobile/node_modules/
-mobile/build/
-mobile/.expo/
-mobile/.expo-shared/
-mobile/npm-debug.*
-mobile/*.jks
-mobile/*.p8
-mobile/*.p12
-mobile/*.key
-mobile/*.mobileprovision
-mobile/*.orig.*
-mobile/web-build/
-
-# IDEs and Editors
-.idea/
-.vscode/
-*.swp
-*.swo
-*~
-.DS_Store
-
-# OS Files
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-$RECYCLE.BIN/
-
-# Logs
-*.log
-logs/
-
-# Database
-*.db
-*.sqlite
-
 # Environment Variables
 .env
 .env.local
 .env.*.local
 
-# Temporary Files
+# IDE
+.vscode/
+.idea/
+*.iml
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
 *.tmp
 *.temp
 
-# Compiled Files
-*.class
-*.jar
-*.war
-*.ear
+# Database
+*.db
+*.sqlite
 
-# Package Files
-*.zip
-*.tar.gz
-*.rar
-
-# Documentation temporary files
-docs/*.pdf~
-docs/~$*.docx
+# Documentation build
+docs/_build/

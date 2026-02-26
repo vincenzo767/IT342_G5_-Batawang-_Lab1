@@ -1,0 +1,139 @@
+.workspace-page {
+  background: #f6f7fb;
+  min-height: 100vh;
+}
+
+.workspace-header {
+  margin-bottom: 24px;
+}
+
+.workspace-header h1 {
+  margin: 0 0 8px;
+  color: #1f2937;
+}
+
+.workspace-header p {
+  margin: 0;
+  color: #4b5563;
+}
+
+.workspace-grid {
+  gap: 20px;
+}
+
+.workspace-section h2 {
+  margin: 0 0 16px;
+  font-size: 20px;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.workspace-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.workspace-list li {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.workspace-list li strong {
+  color: #111827;
+}
+
+.workspace-list li span {
+  color: #4b5563;
+  font-size: 14px;
+}
+
+.workspace-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.workspace-actions .btn {
+  justify-content: center;
+  text-decoration: none;
+}
+
+.profile-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.profile-field strong {
+  font-size: 13px;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.profile-field span {
+  font-size: 16px;
+  color: #1f2937;
+}
+
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.setting-row label {
+  font-weight: 600;
+  color: #374151;
+}
+
+.setting-row select {
+  min-width: 180px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: #fff;
+}
+
+.checkbox-row {
+  align-items: center;
+}
+
+.checkbox-row input {
+  width: 18px;
+  height: 18px;
+}
+
+.settings-note {
+  color: #6b7280;
+  font-size: 14px;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .workspace-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .setting-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .setting-row select {
+    width: 100%;
+  }
+}
