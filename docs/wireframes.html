@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SynChef - UI/UX Wireframes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #F3F4F6;
+            color: #1F2937;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px 16px;
+        }
+
+        header {
+            background: #FFFFFF;
+            border-bottom: 1px solid #E5E7EB;
+            padding: 24px 0;
+            margin-bottom: 32px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #2563EB;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #6B7280;
+        }
+
+        nav {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        .nav-btn {
+            padding: 8px 16px;
+            background: #F3F4F6;
+            border: 1px solid #D1D5DB;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover {
+            background: #E5E7EB;
+            border-color: #9CA3AF;
+        }
+
+        .nav-btn.active {
+            background: #2563EB;
+            color: #FFFFFF;
+            border-color: #2563EB;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            border: 1px solid #E5E7EB;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transform: translateY(-4px);
+        }
+
+        .card.full {
+            grid-column: 1 / -1;
+        }
+
+        .card-image {
+            background: #F3F4F6;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wireframe {
+            width: 100%;
+            height: 100%;
+            background: #FFFFFF;
+            border: 2px dashed #D1D5DB;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 16px;
+            padding: 24px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .component {
+            width: 100%;
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 8px 0;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2563EB;
+        }
+
+        .card-description {
+            font-size: 14px;
+            color: #6B7280;
+            margin-bottom: 12px;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: #DBEAFE;
+            color: #1E40AF;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #1F2937;
+            border-bottom: 3px solid #2563EB;
+            padding-bottom: 12px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            background: #FFFFFF;
+            border-radius: 12px;
+            border: 2px dashed #D1D5DB;
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #2563EB;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .button:hover {
+            background: #1D4ED8;
+        }
+
+        .button.secondary {
+            background: #7C3AED;
+        }
+
+        .button.secondary:hover {
+            background: #6D28D9;
+        }
+
+        .preview-iframe {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .card-image {
+                height: 200px;
+                font-size: 36px;
+            }
+        }
+
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .comparison .card {
+            grid-column: auto;
+        }
+
+        @media (max-width: 768px) {
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid #E5E7EB;
+            color: #6B7280;
+            font-size: 14px;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+        }
+
+        .color-swatch {
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            color: #FFFFFF;
+            font-weight: 600;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .color-swatch.light {
+            color: #1F2937;
+            border: 1px solid #E5E7EB;
+        }
+
+        .color-label {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🍳 SynChef - UI/UX Wireframes</h1>
+            <p class="subtitle">Interactive Prototype & Design System</p>
+            <nav>
+                <button class="nav-btn active" onclick="showSection('web')">Web Application</button>
+                <button class="nav-btn" onclick="showSection('mobile')">Mobile Application</button>
+                <button class="nav-btn" onclick="showSection('design-system')">Design System</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- WEB APPLICATION SECTION -->
+        <section id="web" class="section active">
+            <h2 class="section-title">🌐 Web Application Wireframes</h2>
+
+            <div class="grid">
+                <!-- Homepage -->
+                <div class="card full">
+                    <div class="card-image">
+                        <div class="wireframe">
+                            <div style="width: 100%; background: #2563EB; color: white; padding: 16px; text-align: left; font-weight: 600;">
+                                🏠 HOMEPAGE - PRODUCT LISTING
+                            </div>
+                            <div style="flex: 1; width: 100%; display: grid; grid-template-columns: 2fr 1fr; gap: 16px; padding: 16px;">
+                                <div style="background: #F9FAFB; border: 1px dashed #D1D5DB; padding: 12px; border-radius: 6px;">
+                                    <div style="font-weight: 600; margin-bottom: 8px;">📋 Filters & Sorting</div>
+                                    <div style="font-size: 10px; color: #6B7280; line-height: 1.8;">
+                                        ✓ Categories<br/>✓ Difficulty<br/>✓ Prep Time<br/>✓ Sort Options
+                                    </div>
+                                </div>
+                                <div style="background: #F9FAFB; border: 1px dashed #D1D5DB; padding: 12px; border-radius: 6px;">
+                                    <div style="font-weight: 600; margin-bottom: 8px;">🎨 Product Grid</div>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                                        <div style="background: #E5E7EB; height: 40px; border-radius: 4px;"></div>
+                                        <div style="background: #E5E7EB; height: 40px; border-radius: 4px;"></div>
+                                        <div style="background: #E5E7EB; height: 40px; border-radius: 4px;"></div>
+                                        <div style="background: #E5E7EB; height: 40px; border-radius: 4px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">Homepage - Product Listing</div>
+                        <p class="card-description">Full-width responsive layout with 3-column grid (desktop), filters, product cards, and pagination. Includes search bar, category filters, difficulty levels, and sorting options.</p>
+                        <div class="card-tags">
+                            <span class="tag">Desktop</span>
+                            <span class="tag">3-Column Grid</span>
+                            <span class="tag">Filters</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Detail -->
+                <div class="card full">
+                    <div class="card-image">
+                        <div class="wireframe">
+                            <div style="width: 100%; background: #7C3AED; color: white; padding: 12px; text-align: left; font-weight: 600; font-size: 12px;">
+                                📦 PRODUCT DETAIL PAGE
+                            </div>
+                            <div style="flex: 1; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 16px;">
+                                <div style="background: #E5E7EB; border-radius: 6px; display: flex; flex-direction: column; gap: 4px; padding: 12px;">
+                                    <div style="background: #D1D5DB; height: 80px; border-radius: 4px;"></div>
+                                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px;">
+                                        <div style="background: #D1D5DB; height: 20px; border-radius: 4px;"></div>
+                                        <div style="background: #D1D5DB; height: 20px; border-radius: 4px;"></div>
+                                        <div style="background: #D1D5DB; height: 20px; border-radius: 4px;"></div>
+                                        <div style="background: #D1D5DB; height: 20px; border-radius: 4px;"></div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 8px; padding: 12px; background: #F9FAFB; border: 1px dashed #D1D5DB; border-radius: 6px;">
+                                    <div style="font-weight: 600; font-size: 12px;">Recipe Name</div>
+                                    <div style="height: 8px; background: #D1D5DB; border-radius: 2px; width: 60%; font-size: 8px; color: #6B7280;"></div>
+                                    <div style="font-size: 10px; color: #6B7280; margin-top: 8px;">
+                                        ✓ Prep Time<br/>✓ Cook Time<br/>✓ Servings
+                                    </div>
+                                    <div style="margin-top: 8px;">
+                                        <div style="background: #2563EB; color: white; padding: 4px 8px; border-radius: 4px; font-size: 10px; text-align: center; cursor: pointer;">Add to Cart</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">Product Detail Page</div>
+                        <p class="card-description">Large product image with gallery, recipe information, specifications, quantity selector, and action buttons. Includes tabs for description, ingredients, and reviews.</p>
+                        <div class="card-tags">
+                            <span class="tag">Image Gallery</span>
+                            <span class="tag">Specifications</span>
+                            <span class="tag">Tabs</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shopping Cart -->
+                <div class="card">
+                    <div class="card-image">
+                        <div class="wireframe">
+                            <div style="width: 100%; background: #10B981; color: white; padding: 8px; text-align: center; font-weight: 600; font-size: 12px;">
+                                🛒 SHOPPING CART
+                            </div>
+                            <div style="width: 100%; flex: 1; padding: 12px;">
+                                <div style="background: #F9FAFB; border: 1px dashed #D1D5DB; padding: 8px; margin-bottom: 8px; border-radius: 4px; font-size: 10px;">
+                                    <div style="font-weight: 600;">Item 1 - $12.99 × 1</div>
+                                </div>
+                                <div style="background: #F9FAFB; border: 1px dashed #D1D5DB; padding: 8px; margin-bottom: 8px; border-radius: 4px; font-size: 10px;">
+                                    <div style="font-weight: 600;">Item 2 - $15.99 × 2</div>
+                                </div>
+                                <div style="border-top: 1px solid #D1D5DB; margin-top: 8px; padding-top: 8px; font-size: 10px; font-weight: 600;">
+                                    Total: $44.97
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">Shopping Cart</div>
+                        <p class="card-description">Cart items list with image, name, quantity, price, and remove button. Order summary with subtotal, shipping, tax, and total. Sticky checkout button.</p>
+                        <div class="card-tags">
+                            <span class="tag">Cart Items</span>
+                            <span class="tag">Editable</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Checkout -->
+                <div class="card">
+                    <div class="card-image">
+                        <div class="wireframe">
+                            <div style="width: 100%; background: #EF4444; color: white; padding: 8px; text-align: center; font-weight: 600; font-size: 12px;">
+                                💳 CHECKOUT
+                            </div>
+                            <div style="width: 100%; flex: 1; padding: 12px; display: flex; flex-direction: column; gap: 8px;">
+                                <div style="background: #DBEAFE; border: 1px solid #BFDBFE; padding: 6px; border-radius: 4px; font-size: 9px; font-weight: 600;">Step 1: Cart</div>
+                                <div style="background: #DBEAFE; border: 1px solid #BFDBFE; padding: 6px; border-radius: 4px; font-size: 9px; font-weight: 600;">Step 2: Shipping</div>
+                                <div style="background: #FEE2E2; border: 1px solid #FECACA; padding: 6px; border-radius: 4px; font-size: 9px; font-weight: 600;">Step 3: Payment (Current)</div>
+                                <div style="background: #F3F4F6; border: 1px solid #D1D5DB; padding: 6px; border-radius: 4px; font-size: 9px; font-weight: 600;">Step 4: Confirm</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">Checkout Page</div>
+                        <p class="card-description">Multi-step checkout flow with shipping address form, order review, payment method selection, and place order button.</p>
+                        <div class="card-tags">
+                            <span class="tag">4 Steps</span>
+                            <span class="tag">Form</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Dashboard -->
+                <div class="card">
+                    <div class="card-image">
+                        <div class="wireframe">
+                            <div style="width: 100%; background: #9333EA; color: white; padding: 8px; text-align: center; font-weight: 600; font-size: 12px;">
+                                👨‍💼 ADMIN DASHBOARD
+                            </div>
+                            <div style="flex: 1; width: 100%; display: grid; grid-template-columns: 1fr 2fr; gap: 8px; padding: 12px;">
+                                <div style="background: #F9FAFB; border: 1px dashed #D1D5DB; border-radius: 4px; padding: 8px; font-size: 9px;">
+                                    <div style="font-weight: 600; margin-bottom: 4px;">Navigation</div>
+                                    <div style="line-height: 1.6; color: #6B7280;">
+                                        Dashboard<br/>Products<br/>Orders<br/>Users
+                                    </div>
+                                </div>
+                                <div style="background: #F9FAFB; border: 1px dashed #D1D5DB; border-radius: 4px; padding: 8px; font-size: 9px;">
+                                    <div style="font-weight: 600; margin-bottom: 4px;">Content Area</div>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px;">
+                                        <div style="background: #DBEAFE; padding: 4px; border-radius: 2px; height: 20px;"></div>
+                                        <div style="background: #DBEAFE; padding: 4px; border-radius: 2px; height: 20px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">Admin Dashboard</div>
+                        <p class="card-description">Admin panel with sidebar navigation for Dashboard, Products, Orders, Users, and Settings. Includes product management and order tracking.</p>
+                        <div class="card-tags">
+                            <span class="tag">Admin</span>
+                            <span class="tag">Management</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MOBILE APPLICATION SECTION -->
+        <section id="mobile" class="section">
+            <h2 class="section-title">📱 Mobile Application Wireframes</h2>
+
+            <div class="grid">
+                <!-- Home Screen -->
+                <div class="card">
+                    <div class="card-image">
+                        <div class="wireframe" style="width: 180px; margin: 0 auto; border-radius: 24px; border: 3px solid #1F2937;">
+                            <div style="width: 100%; background: #2563EB; color: white; padding: 12px 8px; text-align: center; font-weight: 600; font-size: 10px; border-radius: 20px 20px 0 0;">
+                                🏠 HOME
+                            </div>
+                            <div style="flex: 1; width: 100%; overflow: auto; padding: 8px;">
+                                <div style="background: #F9FAFB; padding: 6px; border-radius: 4px; margin-bottom: 6px; font-size: 8px;">
+                                    [Search Bar]
+                                </div>
+                                <div style="background: #DBEAFE; padding: 6px; border-radius: 4px; margin-bottom: 6px; height: 40px; font-size: 8px;">
+                                    [Featured Recipe]
+                                </div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px;">
+                                    <div style="background: #E5E7EB; height: 30px; border-radius: 4px;"></div>
+                                    <div style="background: #E5E7EB; height: 30px; border-radius: 4px;"></div>
+                                </div>
+                            </div>
+                            <div style="width: 100%; background: #F3F4F6; border-top: 1px solid #D1D5DB; padding: 6px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; text-align: center; font-size: 10px; font-weight: 600; border-radius: 0 0 20px 20px;">
+                                🏠 🔍 🛒 👤
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">Home Screen</div>
+                        <p class="card-description">Mobile home screen with search bar, trending recipes, recommended section in 2-column grid, and bottom navigation with 4 main tabs.</p>
+                        <div class="card-tags">
+                            <span class="tag">Mobile</span>
+                            <span class="tag">Bottom Nav</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Detail Mobile -->
+                <div class="card">
+                    <div class="card-image">
+                        <div class="wireframe" style="width: 180px; margin: 0 auto; border-radius: 24px; border: 3px solid #1F2937;">
+                            <div style="width: 100%; background: #7C3AED; color: white; padding: 8px; text-align: left; font-weight: 600; font-size: 9px; border-radius: 20px 20px 0 0;">
+                                ← Recipe Name
+                            </div>
+                            <div style="flex: 1; width: 100%; overflow: auto; padding: 8px; display: flex; flex-direction: column; gap: 6px;">
+                                <div style="background: #E5E7EB; height: 80px; border-radius: 6px;"></div>
+                                <div style="font-size: 9px; font-weight: 600;">Recipe info</div>
+                                <div style="font-size: 8px; color: #6B7280;">Description...</div>
+                                <div style="font-size: 8px;">⭐ 4.5 (120)</div>
+                            </div>
+                            <div style="width: 100%; background: #2563EB; color: white; padding: 8px; text-align: center; font-weight: 600; font-size: 10px; border-radius: 0 0 20px 20px;">
+                                Add to Cart
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">Product Detail Mobile</div>
+                        <p class="card-description">Mobile product detail with swipeable image gallery, recipe info, description, ratings, and fixed sticky "Add to Cart" button at bottom.</p>
+                        <div class="card-tags">
+                            <span class="tag">Mobile</span>
+                            <span class="tag">Sticky Button</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cart Mobile -->
+                <div class="card">
+                    <div class="card-image">
+                        <div class="wireframe" style="width: 180px; margin: 0 auto; border-radius: 24px; border: 3px solid #1F2937;">
+                            <div style="width: 100%; background: #10B981; color: white; padding: 8px; text-align: left; font-weight: 600; font-size: 9px; border-radius: 20px 20px 0 0;">
+                                ← Cart
+                            </div>
+                            <div style="flex: 1; width: 100%; overflow: auto; padding: 8px; display: flex; flex-direction: column; gap: 6px;">
+                                <div style="background: #F9FAFB; padding: 6px; border-radius: 4px; font-size: 8px; cursor: pointer; position: relative;">
+                                    Item 1 - $12.99 <span style="position: absolute; right: 6px;">⟿</span>
+                                </div>
+                                <div style="background: #F9FAFB; padding: 6px; border-radius: 4px; font-size: 8px; cursor: pointer; position: relative;">
+                                    Item 2 - $15.99 × 2 <span style="position: absolute; right: 6px;">⟿</span>
+                                </div>
+                            </div>
+                            <div style="width: 100%; background: #F3F4F6; border-top: 1px solid #D1D5DB; padding: 8px; font-size: 8px; font-weight: 600; border-radius: 0 0 20px 20px;">
+                                Total: $44.97<br/><button style="background: #2563EB; color: white; border: none; border-radius: 4px; padding: 6px 12px; width: 100%; font-size: 8px; margin-top: 4px; cursor: pointer;">Checkout</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">Cart Mobile</div>
+                        <p class="card-description">Mobile shopping cart with swipe-to-delete gestures, edit mode for quantity, and sticky order summary with checkout button.</p>
+                        <div class="card-tags">
+                            <span class="tag">Mobile</span>
+                            <span class="tag">Gestures</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Checkout Mobile -->
+                <div class="card">
+                    <div class="card-image">
+                        <div class="wireframe" style="width: 180px; margin: 0 auto; border-radius: 24px; border: 3px solid #1F2937;">
+                            <div style="width: 100%; background: #EF4444; color: white; padding: 8px; text-align: left; font-weight: 600; font-size: 9px; border-radius: 20px 20px 0 0;">
+                                ← Checkout
+                            </div>
+                            <div style="flex: 1; width: 100%; overflow: auto; padding: 8px;">
+                                <div style="background: #FEE2E2; border: 1px solid #FECACA; padding: 6px; border-radius: 4px; font-size: 8px; font-weight: 600; margin-bottom: 6px;">
+                                    Step 3 of 4: Payment
+                                </div>
+                                <div style="background: #F9FAFB; padding: 6px; border-radius: 4px; margin-bottom: 4px; font-size: 8px;">
+                                    Card Number
+                                </div>
+                                <div style="background: #F9FAFB; padding: 6px; border-radius: 4px; margin-bottom: 4px; font-size: 8px;">
+                                    Exp Date
+                                </div>
+                                <div style="background: #F9FAFB; padding: 6px; border-radius: 4px; font-size: 8px;">
+                                    CVV
+                                </div>
+                            </div>
+                            <div style="width: 100%; background: #F3F4F6; border-top: 1px solid #D1D5DB; padding: 8px; text-align: center; font-size: 8px; font-weight: 600; border-radius: 0 0 20px 20px;">
+                                <button style="background: #2563EB; color: white; border: none; border-radius: 4px; padding: 6px 12px; width: 100%; cursor: pointer;">Place Order</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">Checkout Mobile</div>
+                        <p class="card-description">Mobile checkout with 4-step flow indicator, simplified form fields, order summary, and place order confirmation.</p>
+                        <div class="card-tags">
+                            <span class="tag">Mobile</span>
+                            <span class="tag">Forms</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Features Info -->
+                <div class="card full">
+                    <div class="card-content">
+                        <div class="card-title">📱 Mobile-Specific Features</div>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 16px;">
+                            <div class="component">
+                                <strong>Touch Optimization</strong><br/>
+                                Min 44×44px buttons<br/>48×48px touch targets<br/>8-16px spacing
+                            </div>
+                            <div class="component">
+                                <strong>Gestures</strong><br/>
+                                Swipe left/right<br/>Pull-to-refresh<br/>Pinch to zoom<br/>Double-tap
+                            </div>
+                            <div class="component">
+                                <strong>Bottom Navigation</strong><br/>
+                                4-5 main sections<br/>Active state highlighted<br/>Badge for notifications
+                            </div>
+                            <div class="component">
+                                <strong>Responsive Forms</strong><br/>
+                                Single column<br/>Large inputs (56px)<br/>Auto-fill enabled<br/>Minimal fields
+                            </div>
+                            <div class="component">
+                                <strong>Offline Caching</strong><br/>
+                                Product images<br/>Shopping cart<br/>Recently viewed<br/>Retry on failure
+                            </div>
+                            <div class="component">
+                                <strong>Performance</strong><br/>
+                                Lazy loading<br/>Skeleton screens<br/>Debounced search<br/>Pagination
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DESIGN SYSTEM SECTION -->
+        <section id="design-system" class="section">
+            <h2 class="section-title">🎨 Design System</h2>
+
+            <div style="margin-bottom: 32px;">
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 16px; color: #1F2937;">Colors</h3>
+                <div class="color-grid">
+                    <div class="color-swatch" style="background: #2563EB;">
+                        Primary<br/><span class="color-label">#2563EB</span>
+                    </div>
+                    <div class="color-swatch" style="background: #7C3AED;">
+                        Secondary<br/><span class="color-label">#7C3AED</span>
+                    </div>
+                    <div class="color-swatch" style="background: #10B981;">
+                        Success<br/><span class="color-label">#10B981</span>
+                    </div>
+                    <div class="color-swatch" style="background: #EF4444;">
+                        Error<br/><span class="color-label">#EF4444</span>
+                    </div>
+                    <div class="color-swatch light" style="background: #F3F4F6;">
+                        Light Gray<br/><span class="color-label">#F3F4F6</span>
+                    </div>
+                    <div class="color-swatch" style="background: #1F2937;">
+                        Dark<br/><span class="color-label">#1F2937</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 32px;">
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 16px; color: #1F2937;">Typography</h3>
+                <div style="display: grid; gap: 16px;">
+                    <div class="component">
+                        <div style="font-size: 32px; font-weight: 700;">Heading 1 - 32px Bold</div>
+                    </div>
+                    <div class="component">
+                        <div style="font-size: 24px; font-weight: 700;">Heading 2 - 24px Bold</div>
+                    </div>
+                    <div class="component">
+                        <div style="font-size: 18px; font-weight: 700;">Heading 3 - 18px Bold</div>
+                    </div>
+                    <div class="component">
+                        <div style="font-size: 16px; font-weight: 400;">Body Text - 16px Regular</div>
+                    </div>
+                    <div class="component">
+                        <div style="font-size: 14px; font-weight: 400;">Small Text - 14px Regular</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 32px;">
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 16px; color: #1F2937;">Spacing Scale</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px;">
+                    <div class="component">
+                        <strong>xs: 4px</strong><br/>Tight spacing
+                    </div>
+                    <div class="component">
+                        <strong>sm: 8px</strong><br/>Compact spacing
+                    </div>
+                    <div class="component">
+                        <strong>md: 16px</strong><br/>Standard spacing
+                    </div>
+                    <div class="component">
+                        <strong>lg: 24px</strong><br/>Generous spacing
+                    </div>
+                    <div class="component">
+                        <strong>xl: 32px</strong><br/>Large spacing
+                    </div>
+                    <div class="component">
+                        <strong>2xl: 48px</strong><br/>Extra large spacing
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 32px;">
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 16px; color: #1F2937;">Components</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+                    <div class="component">
+                        <strong>Buttons</strong><br/>
+                        <button class="button" style="width: 100%; margin-top: 8px;">Primary Button</button>
+                        <button class="button secondary" style="width: 100%; margin-top: 8px;">Secondary Button</button>
+                    </div>
+                    <div class="component">
+                        <strong>Input Field</strong><br/>
+                        <input type="text" placeholder="Enter text..." style="width: 100%; padding: 8px 12px; border: 1px solid #D1D5DB; border-radius: 8px; margin-top: 8px; font-size: 14px;">
+                    </div>
+                    <div class="component">
+                        <strong>Badge</strong><br/>
+                        <span class="tag" style="display: inline-block; margin-top: 8px;">Active Badge</span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 16px; color: #1F2937;">Responsive Breakpoints</h3>
+                <div style="display: grid; gap: 12px;">
+                    <div class="component">
+                        <strong>📱 Mobile: 320px - 639px</strong><br/>
+                        Single column, full-width cards, bottom navigation, touch-optimized
+                    </div>
+                    <div class="component">
+                        <strong>📱 Tablet: 640px - 1023px</strong><br/>
+                        2-column grids, combined navigation, balanced spacing
+                    </div>
+                    <div class="component">
+                        <strong>🖥️ Desktop: 1024px+</strong><br/>
+                        3+ column grids, full sidebar, hover interactions
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>SynChef UI/UX Wireframes & Design System © 2024</p>
+        <p style="font-size: 12px; margin-top: 8px;">
+            💡 Tip: You can copy these designs into Figma to create an editable design file
+        </p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Update nav buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
